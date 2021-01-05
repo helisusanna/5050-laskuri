@@ -17,7 +17,7 @@
     "restify": "^8.5.1"
   },
   "engines": {
-    "node": "14.x"
+    "node": "14.15.0"
   },
   "devDependencies": {},
   "repository": {
