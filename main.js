@@ -20,7 +20,7 @@ const crypto = require("crypto");
 const ravintolaskuri = require("./models/ravintolaskuri");
 const { ok } = require("assert");
 
-const portti = 3009; 
+const portti = process.env.PORT || 3009;
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
