@@ -179,6 +179,9 @@ module.exports = {
 
                     if (lomaketiedot.haimanvajaatoiminta && raakaruoanmaara < 2) {
                         raakavaroitus = `Tämän kokoiselle koiralle en suosittele haiman vajaatoiminnan hoitoon raa'an sian haiman ja ruokintamallin 50/50 yhdistelmää.`
+                        raakaruoanmaara = 0;
+                        raakaproteiini = 0;
+                        raakasinkki = 0;
                     }
 
                     if (lomaketiedot.haimanvajaatoiminta) {
