@@ -303,7 +303,7 @@ app.post("/kirjaudu/", (req, res) => {
                 req.session.saaTulla = true;
 
                 let sessioKayttaja = {
-                    "id": kayttaja.id,
+                    "id": kayttaja.kayttaja_id,
                     "tunnus" : kayttaja.tunnus
                 };
 
