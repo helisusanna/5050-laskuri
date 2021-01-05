@@ -1,0 +1,186 @@
+<%- include("includes/header"); -%>
+<%- include("includes/navi-kirjauduttu"); -%>
+
+<% if (virhe) {%>
+<div class="blue-alert u-full-width">
+<%=virhe%>
+</div>
+<% } %>
+<% if(koira == "") { %>
+<div class="row mt3">
+    <p class="blue-text">Ei löytynyt tallennettuja tietoja.</p>
+</div>
+<% } %>
+<% if(koira) { %>
+<% koira.forEach((koira) => { %>
+<div class="row mt3">
+        <h5 class="blue-text"><%=koira.nimi%></h5>
+</div>
+<div class="row">
+    <div class="five columns">
+        <b>Määrät ovat laskettu yhdelle vuorokaudelle</b>
+        <p>Aktiivisuustaso: <%=koira.aktiivisuus%></p>
+    </div>
+    <div class="five columns">
+        <ul>
+            <li>Paino: <%=koira.paino%> kg</li>
+            <li>Proteiinin tarve: <%=koira.proteiini_tarve%> g</li>
+        </ul>
+    </div>
+</div>
+    
+    
+<div class="row mt3">
+
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Valittu raakaruoka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=koira.raaka_valittu%></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="seven columns">
+        <thead>
+            <tr>
+                <th>Raakaruoan määrä</th>
+                <th>Proteiinin määrä</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=koira.raaka_maara%> g</td>
+                <td><%=koira.raaka_proteiini%> g</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <% if(koira.haimanvajaatoiminta==1){ %>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <td></td>
+                <th>Haiman vajaatoiminnan hoitoon</th>
+            </tr>
+        </thead>
+    </table>
+    <ul>
+        <li>190 grammaa sian haimaa</li>
+        <li>B12-vitamiinilisänä 1 mg suun kautta tai pistoksina ihon alle eläinlääkärin annostuksella</li>
+    </ul>
+    <% } %>
+</div>
+
+<div class="row mt3">
+
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Valittu kuivaruoka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=koira.kuiva_valittu%></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="seven columns">
+        <thead>
+            <tr>
+                <th>Kuivaruoan määrä</th>
+                <th>Proteiinin määrä</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=koira.kuiva_maara%> g</td>
+                <td><%=koira.kuiva_proteiini%> g</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="row mt3">
+
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Yhteensä</th>
+            </tr>
+        </thead>
+    </table>
+    <table class="seven columns">
+        <thead>
+            <tr>
+                <%let yhteensa = Number(koira.kuiva_maara) + Number(koira.raaka_maara);%>
+                <td><%=yhteensa%> g ruoan määrä</td>
+                <%let yhteensa_proteiini = Number(koira.kuiva_proteiini) + Number(koira.raaka_proteiini);%>
+                <td><%=yhteensa_proteiini%> g proteiinia</td>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+    
+<div class="row mt3">
+    <p class="blue-text">Ravintolisät</p>
+</div>
+
+<div class="row">
+    <%let lisasinkki = koira.sinkki_tarve - koira.kuiva_sinkki%>
+    <% if(lisasinkki > 0) { %>
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Sinkin lisätarve</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=lisasinkki%> mg</td>
+            </tr>
+        </tbody>
+    </table>
+    <% } else { %>
+    <table class="four columns">
+        <thead>
+            <tr>
+                <td>Ravinto sisältää riittävästi sinkkiä, mutta sinkkilisä saattaa silti olla hyödyksi koiralle.</td>
+            </tr>
+        </thead>
+    </table>
+    <% } %>
+
+    <table class="seven columns">
+        <% if(koira.nivelrikko == 1) { %>
+            <thead>
+                <tr>
+                    <th>Nivelravinteiden määrät</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <td>MSM</td>
+                    <td><%=koira.msm_tarve%> mg</td>
+                </tr>
+                <tr>
+                    <td>Kondroitiini</td>
+                    <td><%=koira.kondr_tarve%> mg</td>
+                </tr>
+                <tr>
+                    <td>Glukosamiini</td>
+                    <td><%=koira.gluk_tarve%> mg</td>
+                </tr>
+            </tbody>
+        <% } %>
+    </table>
+</div>
+<% }); %>
+<% } %>
+
+<%- include("includes/footer") -%>

@@ -1,0 +1,77 @@
+<%- include("includes/header"); -%>
+<% if(kirjauduttu){ %>
+<%- include("includes/navi-kirjauduttu"); -%>
+<% } else { %>
+<%- include("includes/navi"); -%>
+<% } %>
+
+<% if (virhe) {%>
+<div class="alert u-full-width">
+<%=virhe%>
+</div>        
+<% } else {%>
+
+<form method="POST" action="/laske">
+
+    <div class="row">
+        <div class="four columns mt3">
+            <label for="paino">Koiran paino (kg)</label>
+            <input class="u-full-width" type="number" placeholder="Koiran paino" name="paino" min="1" max="70" autofocus>
+        </div>
+        <div class="four columns mt3">
+            <label for="paino">Koiran ikä</label>
+            <input class="u-full-width" type="number" placeholder="Koiran ikä" name="ika" min="0" max="20"> 
+        </div>
+        <div class="four columns mt3">
+            <label for="aktiivisuus">Aktiivisuus</label>
+            <select class="u-full-width" name="aktiivisuus">
+                <option value="normaali">normaali</option>
+                <option value="laiska">laiska</option>
+                <option value="aktiivinen">aktiivinen</option>
+            </select>
+        </div>
+    </div>  
+
+    <div class="row mt3">
+        <div class="u-full-width">
+            <label>Sairaudet</label>
+            <div class="three columns">
+                <label>
+                    <input type="checkbox" name="nivelrikko" value="1">
+                    <span class="label-body">Nivelrikko</span>
+                </label>
+            </div>
+            <div class="three columns">
+                <label>
+                    <input type="checkbox" name="haimanvajaatoiminta" value="1">
+                    <span class="label-body">Haiman vajaatoiminta</span>
+                </label>
+            </div> 
+        </div>
+    </div>
+
+    <div class="row mt3">
+        <div class="six columns">
+            <label for="valinta_kuivaruoka">Valitse kuivaruoka</label>
+            <select class="u-full-width" name="valinta_kuivaruoka">
+                <% kuivaruoat.forEach((kuivaruoka) => { %>
+                <option value="<%=kuivaruoka.tuote%>"><%=kuivaruoka.tuote%></option>
+                <% }); %>
+            </select>
+        </div>
+        <div class="six columns">
+            <label for="valinta_raakaruoka">Valitse liha</label>
+            <select class="u-full-width" name="valinta_raakaruoka">
+                <% raakaruoat.forEach((raakaruoka) => { %>
+                <option value="<%=raakaruoka.tuote%>"><%=raakaruoka.tuote%></option>
+                <% }); %>
+            </select>
+        </div>
+    </div>
+
+    <input class="button-primary mt3" type="submit" value="Laske">
+</form>
+
+<% } %>
+
+<%- include("includes/footer") -%>

@@ -1,0 +1,67 @@
+<%- include("includes/header"); -%>
+<%- include("includes/navi-kirjauduttu"); -%>
+
+<% if (virhe) {%>
+<div class="blue-alert u-full-width">
+<%=virhe%>
+</div>
+<div class="u-full-width mt3">
+    <a href="/tulokset"><input type="button" class="button" value="takaisin tuloksiin"></a>
+</div>               
+<% } else if (ok) {%>
+<div class="blue-alert u-full-width">
+<%=ok%>
+</div>
+<div class="u-full-width mt3">
+    <a href="/omatkoirat"><input type="button" class="button" value="katso omat koirat"></a>
+</div>               
+<% } else { %>
+
+<form method="POST" action="/tallenna">
+
+  <div class="row mt3">
+    <div class="six columns mt3">
+        <label for="paino">Lisää uusi koira</label>
+        <input class="u-full-width" type="text" placeholder="Koiran nimi" name="nimi">
+    </div>
+  </div>
+  <div class="row mt3">
+    <div class="six columns mt3">
+        <label for="valmisKoira">Tai valitse jo tallennettu koira</label>
+        <select class="u-full-width" name="valmisKoira">
+                <option value="">Valitse..</option>
+                <% if(koira){
+                 koira.forEach((koira) => { %>
+                <option value="<%=koira.nimi%>"><%=koira.nimi%></option>
+                <% }); %>
+                <% } %>
+        </select>
+    </div>
+  </div>
+
+    <input type="hidden" name="kayttaja_id" value="<%=kayttaja.id%>">
+    <input type="hidden" name="paino" value="<%=koiranTiedot.paino%>">
+    <input type="hidden" name="ika" value="<%=koiranTiedot.ika%>">
+    <input type="hidden" name="aktiivisuus" value="<%=koiranTiedot.aktiivisuus%>">
+    <input type="hidden" name="proteiini_tarve" value="<%=koiranTiedot.proteiini_tarve%>">
+    <input type="hidden" name="sinkki_tarve" value="<%=koiranTiedot.sinkki_tarve%>">
+    <input type="hidden" name="haimanvajaatoiminta" value="<%=koiranTiedot.haimanvajaatoiminta%>">
+    <input type="hidden" name="nivelrikko" value="<%=koiranTiedot.nivelrikko%>">
+    <input type="hidden" name="msm_tarve" value="<%=koiranTiedot.msm_tarve%>">
+    <input type="hidden" name="kondr_tarve" value="<%=koiranTiedot.kondr_tarve%>">
+    <input type="hidden" name="gluk_tarve" value="<%=koiranTiedot.gluk_tarve%>">
+    <input type="hidden" name="raaka_valittu" value="<%=raakatulokset.tuote%>">
+    <input type="hidden" name="raaka_maara" value="<%=raakatulokset.maara%>">
+    <input type="hidden" name="raaka_proteiini" value="<%=raakatulokset.proteiini%>">
+    <input type="hidden" name="kuiva_valittu" value="<%=kuivatulokset.tuote%>">
+    <input type="hidden" name="kuiva_maara" value="<%=kuivatulokset.maara%>">
+    <input type="hidden" name="kuiva_proteiini" value="<%=kuivatulokset.proteiini%>">
+    <input type="hidden" name="kuiva_sinkki" value="<%=kuivatulokset.sinkki%>">
+
+
+    <input class="button-primary mt3" type="submit" value="Tallenna">
+</form>
+<a href="/tulokset"><button class="button">Peruuta</button></a>
+
+<% } %>
+<%- include("includes/footer") -%>

@@ -1,0 +1,35 @@
+[
+    {
+        "tuote" : "Hau-Hau Champion Lammas-riisi",
+        "g_per_5kg" : "90.00",
+        "proteiini" : 23,
+        "rasva" : 10,
+        "kuitu" : "2.80",
+        "sinkki" : "7.30",
+        "msm" : "0.00",
+        "kondroitiini" : "0.00",
+        "glukosamiini" : "0.00"
+    },
+    {
+        "tuote" : "James Wellbeloved Senior Kalkkuna & Riisi",
+        "g_per_5kg" : "90.00",
+        "proteiini" : 19,
+        "rasva" : 9,
+        "kuitu" : "3.80",
+        "sinkki" : "38.50",
+        "msm" : "0.00",
+        "kondroitiini" : "0.00",
+        "glukosamiini" : "0.00"
+    },
+    {
+        "tuote" : "Canagan Light/Senior",
+        "g_per_5kg" : "70.00",
+        "proteiini" : 33,
+        "rasva" : 14,
+        "kuitu" : "3.50",
+        "sinkki" : "57.70",
+        "msm" : "170.00",
+        "kondroitiini" : "120.00",
+        "glukosamiini" : "170.00"
+    }
+]

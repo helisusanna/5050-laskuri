@@ -1,0 +1,26 @@
+[
+    {
+        "tuote" : "Broilerjauheliha",
+        "rasva" : 8,
+        "proteiini" : 15,
+        "sinkki" : "2.70"
+    },
+    {
+        "tuote" : "Broilerfile",
+        "rasva" : 2,
+        "proteiini" : 23,
+        "sinkki" : "0.90"
+    },
+    {
+        "tuote" : "Possun sydänjauheliha",
+        "rasva" : 5,
+        "proteiini" : 16,
+        "sinkki" : "1.30"
+    },
+    {
+        "tuote" : "Porojauheliha luulla",
+        "rasva" : 5,
+        "proteiini" : 19,
+        "sinkki" : "4.80"
+    }
+]

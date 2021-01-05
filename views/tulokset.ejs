@@ -1,0 +1,234 @@
+<%- include("includes/header"); -%>
+<% if(kirjauduttu){ %>
+<%- include("includes/navi-kirjauduttu"); -%>
+<% } else { %>
+<%- include("includes/navi"); -%>
+<% } %>
+
+<% if (tallennusVirhe) {%>
+<div class="blue-alert u-full-width">
+<%=tallennusVirhe%>
+</div>
+<div class="u-full-width mt3">
+    <a href="/kirjaudu"><input type="button" class="button" value="kirjaudu"></a>
+</div>        
+<% } else if (virhe) {%>
+<div class="blue-alert u-full-width">
+<%=virhe%>
+</div>
+<div class="u-full-width mt3">
+    <a href="/"><input type="button" class="button" value="takaisin"></a>
+</div>        
+<% } else if (raakatulokset && kuivatulokset && tiedot) { %>
+
+<div class="row mt3">
+    <h5 class="blue-text">Tulokset</h5>
+</div>
+<div class="row">
+    <div class="five columns">
+        <b>Määrät ovat laskettu yhdelle vuorokaudelle</b>
+        <p>Tiedot ovat laskettu aktiivisuustason <i><%=tiedot.aktiivisuus%></i>  mukaan</p>
+    </div>
+
+    <div class="five columns">
+        <ul>
+            <li>Koirasi paino on <%=tiedot.paino%> kg</li>
+            <li>Päivittäinen proteiinin tarve on <%=tiedot.proteiini_tarve%> g</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row mt3">
+
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Valittu raakaruoka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=raakatulokset.tuote%></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="seven columns">
+        <thead>
+            <tr>
+                <th>Raakaruoan määrä</th>
+                <th>Proteiinin määrä</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=raakatulokset.maara%> g</td>
+                <td><%=raakatulokset.proteiini%> g</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <% if(tiedot.haimanvajaatoiminta==1){ %>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Haiman vajaatoiminnan hoitoon</th>
+                <td>190 grammaa sian haimaa</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+                <td>Sian haiman rasvaprosentti on <%=raakatulokset.haimarasva%></td>
+            </tr>
+        </tbody>
+    </table>
+    <% } %>
+    <% if(raakatulokset.raakavaroitus){ %>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th><%=raakatulokset.raakavaroitus%></th>
+            </tr>
+        </thead>
+    </table>
+    <% } %>
+</div>
+
+<div class="row mt3">
+
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Valittu kuivaruoka</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=kuivatulokset.tuote%></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="seven columns">
+        <thead>
+            <tr>
+                <th>Kuivaruoan määrä</th>
+                <th>Proteiinin määrä</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=kuivatulokset.maara%> g</td>
+                <td><%=kuivatulokset.proteiini%> g</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <% if(kuivatulokset.varoitus){ %>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th><%=kuivatulokset.varoitus%></th>
+            </tr>
+        </thead>
+    </table>
+    <% } %>
+
+</div>
+
+
+<div class="row mt3">
+
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Yhteensä</th>
+            </tr>
+        </thead>
+    </table>
+    <table class="seven columns">
+        <thead>
+            <tr>
+                <%let yhteensa = Number(kuivatulokset.maara) + Number(raakatulokset.maara);%>
+                <td><%=yhteensa%> g ruoan määrä</td>
+                <%let yhteensa_proteiini = Number(kuivatulokset.proteiini) + Number(raakatulokset.proteiini);%>
+                <td><%=yhteensa_proteiini%> g proteiinia</td>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+<div class="row mt3">
+    <h5 class="blue-text">RAVINTOLISÄT</h5>
+</div>
+
+<div class="row">
+    <%let lisasinkki = tiedot.sinkki_tarve - kuivatulokset.sinkki%>
+    <% if(lisasinkki > 0) { %>
+    <table class="four columns">
+        <thead>
+            <tr>
+                <th>Sinkin lisätarve</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%=lisasinkki%> mg</td>
+            </tr>
+        </tbody>
+    </table>
+    <% } else { %>
+    <table class="four columns">
+        <thead>
+            <tr>
+                <td>Ravinto sisältää riittävästi sinkkiä, mutta sinkkilisä saattaa silti olla hyödyksi koiralle.</td>
+            </tr>
+        </thead>
+    </table>
+    <% } %>
+
+    <table class="seven columns">
+    <% if(tiedot.nivelrikko == 1) { %>
+        <thead>
+            <tr>
+                <th>Nivelravinteiden määrät</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <%let msm = tiedot.msm_tarve - kuivatulokset.msm%>
+                <td>MSM</td>
+                <td><%=msm%> mg</td>
+            </tr>
+            <tr>
+            <%let kondroitiini = tiedot.kondr_tarve - kuivatulokset.kondroitiini%>
+                <td>Kondroitiini</td>
+                <td><%=kondroitiini%> mg</td>
+            </tr>
+            <tr>
+            <%let glukosamiini = tiedot.gluk_tarve - kuivatulokset.glukosamiini%>
+                <td>Glukosamiini</td>
+                <td><%=glukosamiini%> mg</td>
+            </tr>
+        </tbody>
+    <% } %>
+    </table>
+</div>
+
+<div class="row">
+    <% if(tiedot.haimanvajaatoiminta == 1) { %>
+     <div class="eleven columns">
+        <ul>
+        <li>Haiman vajaatoiminnan hoitoon suosittelen B12-vitamiinilisänä 1 mg suun kautta tai pistoksina ihon alle eläinlääkärin annostuksella.</li>
+        </ul>
+     </div>
+    <% } %>
+</div>
+
+
+<div class="row mt3">
+    <a href="/tallenna"><button class="button button-primary">Tallenna tiedot</button></a>
+</div>
+<% } %>
+
+<%- include("includes/footer") -%>

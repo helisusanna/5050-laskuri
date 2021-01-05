@@ -1,0 +1,43 @@
+<%- include("includes/header"); -%>
+<%- include("includes/navi"); -%>
+
+<h5 class="blue-text mt3">KIRJAUDU SISÄÄN</h5>
+
+<div class="row mt3">
+        <form method="POST" action="/kirjaudu">
+
+        <div class="row mt3">
+            <div class="six columns">
+                <label for="tunnus" class="sr-only">Käyttäjätunnus</label>
+                <input class="u-full-width" type="text" name="tunnus" placeholder="Kirjoita tunnus" autofocus>
+            </div>
+        </div>
+        <div class="row mt3">
+            <div class="six columns">
+                <label for="salasana" class="sr-only">Salasana</label>
+                <input class="u-full-width" type="password" name="salasana" placeholder="Kirjoita salasana">
+            </div>
+        </div>
+        <div class="row mt3">
+            <div class="four columns">
+                <input class="button-primary u-full-width mt3" type="submit" value="Kirjaudu">
+            </div>
+        </div>
+        </form>
+
+        <div class="row">
+        <div class="four columns">
+            <form method="get" action="/rekisteroidy">
+                <input class="button" type="submit" value="Rekisteröidy">
+            </form>
+        </div>
+    </div>
+</div>
+
+<% if (virhe) { %>
+<div class="u-full-width blue-alert mt3">
+    <%=virhe%>
+</div>
+<% } %>
+
+<%- include("includes/footer") -%>
