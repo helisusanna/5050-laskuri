@@ -45,19 +45,19 @@ body {background-color: #eee;}
 }
 
 /* Phone */
-@media (max-width: 550px) {
+@media (max-width: 660px) {
 label.mt15 {margin-top:5%;}
 }
 .navbar-link {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: .2rem;
   text-decoration: none;
-  color:#33C3F0;
-  margin-left:20px; }
-/* Larger than phone */
-@media (min-width: 550px) {
+  color:#18a5cf;
+  margin-left:50px; }
+
+@media (min-width: 660px) {
   .header {
     margin-top: 18rem; }
 

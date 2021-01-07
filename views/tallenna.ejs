@@ -58,10 +58,17 @@
     <input type="hidden" name="kuiva_proteiini" value="<%=kuivatulokset.proteiini%>">
     <input type="hidden" name="kuiva_sinkki" value="<%=kuivatulokset.sinkki%>">
 
-
-    <input class="button-primary mt3" type="submit" value="Tallenna">
+    <div class="row mt3">
+      <div class="three columns mt3">
+        <input class="button-primary u-full-width" type="submit" value="Tallenna">
+      </div>
+    </div>
 </form>
-<a href="/tulokset"><button class="button">Peruuta</button></a>
+<div class="row">
+  <div class="three columns">
+    <a href="/tulokset"><button class="button u-full-width">Peruuta</button></a>
+  </div>
+</div>
 
 <% } %>
 <%- include("includes/footer") -%>
